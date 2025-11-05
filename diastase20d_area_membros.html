@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diástase 20D — Área de Membros</title>
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preconnect" href="https://i.imgur.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0B0B; --fg:#EDEDED; --muted:#A1A1A1; --brand:#D4111E; --accent:#FFD339; --card:#111111; --stroke:#1D1D1D;
+      --r:16px; --space:8px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--fg); font-family:"Sora",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    .app{max-width:1200px; margin:0 auto; padding:16px}
+    header{
+      position:sticky; top:0; z-index:50; background:linear-gradient(180deg, rgba(11,11,11,.95), rgba(11,11,11,.8));
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid var(--stroke);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 8px;}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px}
+    .brand-badge{width:12px; height:12px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #ff615a, #D4111E 60%, #5a0b0f); box-shadow:0 0 24px #D4111E55}
+    .tabs{display:flex; gap:8px; flex-wrap:wrap}
+    .tab-btn{
+      padding:10px 14px; border:1px solid var(--stroke); border-radius:12px; background:#0f0f0f; color:var(--fg);
+      font-weight:600; cursor:pointer; transition:all .2s ease; outline:none;
+    }
+    .tab-btn[aria-selected="true"]{background:var(--brand); border-color:#b50f18; box-shadow:0 6px 18px rgba(212,17,30,.25)}
+    main{padding:24px 8px}
+    .tab{display:none}
+    .tab.active{display:block}
+    .grid{display:grid; gap:16px}
+    @media (min-width:1024px){ .grid{grid-template-columns:repeat(3, 1fr)} }
+    @media (min-width:600px) and (max-width:1023.98px){ .grid{grid-template-columns:repeat(2, 1fr)} }
+    @media (max-width:599.98px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background:var(--card); border:1px solid var(--stroke); border-radius:16px; overflow:hidden; position:relative;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.45); border-color:#232323}
+    .cover{position:relative; aspect-ratio:16/9; background:#111; overflow:hidden}
+    .cover img{width:100%; height:100%; object-fit:cover; display:block}
+    .badge{
+      position:absolute; top:10px; left:10px; padding:6px 10px; background:rgba(0,0,0,.6); color:#fff; border:1px solid rgba(255,255,255,.12);
+      border-radius:999px; font-size:12px; font-weight:700; backdrop-filter: blur(4px);
+    }
+    .card-body{padding:14px}
+    .card-title{font-weight:700; font-size:18px; line-height:1.25; margin:0 0 8px}
+    .progress{height:8px; background:#151515; border:1px solid var(--stroke); border-radius:999px; overflow:hidden}
+    .progress > span{display:block; height:100%; background:linear-gradient(90deg, var(--brand), #e83b25); width:0%}
+    .progress-label{margin-top:6px; font-size:12px; color:var(--muted)}
+    .overlay{position:fixed; inset:0; background:rgba(0,0,0,.65); backdrop-filter: blur(4px); display:none; align-items:flex-end; z-index:80}
+    .overlay.open{display:flex}
+    .sheet{width:100%; max-height:88vh; background:#0f0f0f; border-top-left-radius:20px; border-top-right-radius:20px; border:1px solid var(--stroke); overflow:auto}
+    .sheet-head{display:flex; align-items:center; gap:12px; padding:16px; border-bottom:1px solid var(--stroke); position:sticky; top:0; background:#0f0f0f; z-index:5}
+    .sheet-cover{width:56px; height:56px; border-radius:12px; overflow:hidden; border:1px solid var(--stroke)}
+    .sheet-cover img{width:100%; height:100%; object-fit:cover}
+    .sheet-title{font-size:18px; font-weight:700}
+    .sheet-desc{color:var(--muted); font-size:14px; line-height:1.5}
+    .sheet-body{padding:16px}
+    .lesson{background:#121212; border:1px solid var(--stroke); border-radius:14px; margin-bottom:12px; overflow:hidden}
+    .lesson-head{padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; cursor:pointer}
+    .lesson-title{font-weight:600; font-size:16px}
+    .lesson-desc{color:var(--muted); font-size:13px; margin-top:4px}
+    .lesson-body{display:none; border-top:1px solid var(--stroke); background:#0d0d0d}
+    .lesson-body.open{display:block}
+    .player{position:relative; aspect-ratio:16/9; background:#000}
+    .poster{position:absolute; inset:0; background:#000}
+    .poster img{width:100%; height:100%; object-fit:cover; display:block}
+    .play-btn{
+      position:absolute; inset:auto; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:68px; height:68px; border-radius:50%; background:#D4111E; border:none; cursor:pointer;
+      box-shadow:0 12px 28px rgba(212,17,30,.35); display:flex; align-items:center; justify-content:center;
+    }
+    .play-btn:before{
+      content:""; display:block; border-left:18px solid white; border-top:12px solid transparent; border-bottom:12px solid transparent; margin-left:6px;
+    }
+    .controls{position:absolute; bottom:10px; left:10px; display:flex; gap:8px}
+    .finish-row{display:flex; align-items:center; gap:10px; padding:12px 14px; border-top:1px solid var(--stroke); background:#0b0b0b}
+    .checkbox{width:18px; height:18px; border:2px solid #D4111E; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer}
+    .checkbox.checked{background:#D4111E}
+    .checkbox.checked:after{content:""; width:8px; height:8px; background:#fff; border-radius:2px}
+    .accordion-item{border:1px solid var(--stroke); border-radius:12px; margin-bottom:10px; overflow:hidden; background:#111}
+    .accordion-head{padding:14px; font-weight:600; cursor:pointer}
+    .accordion-body{display:none; padding:0 14px 14px; color:var(--muted); font-size:14px; line-height:1.6}
+    .accordion-body.open{display:block}
+    .cta{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; background:#D4111E; border:1px solid #b50f18; color:#fff; border-radius:999px; font-weight:700}
+    .profile-box{background:#111; border:1px solid var(--stroke); border-radius:16px; padding:16px; max-width:560px}
+    .reset{margin-top:10px; padding:10px 14px; border-radius:10px; background:#1a1a1a; border:1px solid var(--stroke); color:#fff; font-weight:600; cursor:pointer}
+    footer{border-top:1px solid var(--stroke); color:var(--muted); font-size:12px; padding:16px; text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="app nav">
+      <div class="brand"><span class="brand-badge"></span> Diástase 20D — Área de Membros</div>
+      <nav class="tabs" role="tablist" aria-label="Navegação principal">
+        <button class="tab-btn" data-tab="conteudo" aria-selected="true">CONTEÚDO</button>
+        <button class="tab-btn" data-tab="suporte" aria-selected="false">SUPORTE</button>
+        <button class="tab-btn" data-tab="faq" aria-selected="false">FAC</button>
+        <button class="tab-btn" data-tab="perfil" aria-selected="false">PERFIL</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app">
+    <section id="tab-conteudo" class="tab active">
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section id="tab-suporte" class="tab">
+      <h2>Suporte</h2>
+      <p style="color:var(--muted);max-width:600px">
+        Precisa de ajuda? Fale com nossa equipe pelo WhatsApp.
+        Horário de atendimento: 09h–18h, seg–sex.
+      </p>
+      <a id="whatsappBtn" class="cta" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+    </section>
+
+    <section id="tab-faq" class="tab">
+      <h2>FAC — Perguntas Frequentes</h2>
+      <div id="faqList" style="margin-top:12px; max-width:800px"></div>
+    </section>
+
+    <section id="tab-perfil" class="tab">
+      <h2>Perfil</h2>
+      <div class="profile-box" style="margin-top:12px">
+        <div style="display:flex; align-items:center; gap:12px">
+          <div class="sheet-cover"><img src="https://i.imgur.com/NME7r4T.jpg" alt="Avatar placeholder"></div>
+          <div>
+            <div style="font-weight:700">Aluno(a)</div>
+            <div style="color:var(--muted); font-size:14px">Seu progresso total no curso:</div>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <div class="progress" aria-label="Progresso total do curso"><span id="progressTotal" style="width:0%"></span></div>
+          <div id="progressTotalLabel" class="progress-label">0% concluído</div>
+        </div>
+        <button id="resetBtn" class="reset">Redefinir progresso</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet" role="document">
+      <div class="sheet-head">
+        <div class="sheet-cover"><img id="sheetCover" alt=""></div>
+        <div style="flex:1">
+          <div id="sheetTitle" class="sheet-title"></div>
+          <div id="sheetDesc" class="sheet-desc"></div>
+        </div>
+        <button id="closeSheet" class="tab-btn" style="background:#151515;border-color:#222">Fechar</button>
+      </div>
+      <div id="sheetBody" class="sheet-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    Programa educativo. Resultados variam. Em caso de dor, tontura ou desconforto, interrompa e procure avaliação profissional.
+    Gestantes/pós-operatório: apenas com liberação médica.
+  </footer>
+
+  <script>
+    const DATA = {
+      suporte_whatsapp: "https://wa.me/5599999999999?text=Suporte%20Curso%20Diastase20D",
+      curso: {
+        titulo: "Diástase 20D — Core Inteligente e Barriga Firme",
+        subtitulo: "Reduza a diástase em 20 dias e diminua a flacidez abdominal com treinos curtos, seguros e progressivos.",
+        faq: [
+          {q:"Em quanto tempo vejo resultado?", a:"2–3 semanas para perceber controle e menor inchaço; fechamento total varia."},
+          {q:"Serve para pós-parto?", a:"Sim, com liberação médica (especialmente após cesárea)."},
+          {q:"Quantos minutos por dia?", a:"10–20 min, 5–7x/sem, com foco na técnica."},
+          {q:"O que evitar?", a:"Abdominais tradicionais no início, pranchas longas sem controle, manobra de valsalva."},
+          {q:"Sinto dor lombar, e agora?", a:"Reduza amplitude, volte um nível, priorize respiração 360°/TVA. Procure profissional se persistir."},
+          {q:"LPF é obrigatório?", a:"Não, mas ajuda a reduzir pressão e melhorar controle do core."},
+          {q:"Como medir evolução?", a:"Refaça o teste, fotos padronizadas e medida de cintura no mesmo horário."}
+        ],
+        modulos: [
+          {
+            id:1, titulo:"Fundamentos & Diagnóstico Rápido",
+            descricao:"Teste caseiro seguro, respiração 360° e o que realmente piora ou melhora o ‘doming’.",
+            capa:"https://i.imgur.com/F9O0m3J.jpg",
+            aulas:[
+              {titulo:"Teste de Diástase em 2 Minutos", descricao:"Meça largura e profundidade e registre seu ponto de partida.", videoUrl:"https://www.youtube.com/watch?v=N5xbjvs_TQQ"},
+              {titulo:"Respiração 360°: base do abdômen firme", descricao:"Diafragma + TVA para estabilizar sem forçar a linha alba.", videoUrl:"https://www.youtube.com/watch?v=UuqTRhNJtDg"},
+              {titulo:"O que é diástase? Entenda para corrigir", descricao:"Linha alba, retos e por que certos abdominais atrapalham no início.", videoUrl:"https://www.youtube.com/watch?v=pO-KisKtfaU"}
+            ]
+          },
+          {
+            id:2, titulo:"Postura Neutra, TVA & Coluna Segura",
+            descricao:"Correções simples que reduzem pressão 24h/dia.",
+            capa:"https://i.imgur.com/E9vCSKq.jpg",
+            aulas:[
+              {titulo:"Postura neutra em pé e no solo", descricao:"Costelas empilhadas e pelve alinhada no dia a dia.", videoUrl:"https://www.youtube.com/watch?v=JFmViDDIgFQ"},
+              {titulo:"Ativação do Transverso (TVA) na prática", descricao:"Contraia o ‘cinto natural’ sem sugar a barriga.", videoUrl:"https://www.youtube.com/watch?v=rcp9jTsOr-U"},
+              {titulo:"Coluna/Pelve neutra nos exercícios", descricao:"Referências para manter a técnica sob controle.", videoUrl:"https://www.youtube.com/watch?v=SdRmSpSTFJw"}
+            ]
+          },
+          {
+            id:3, titulo:"Hipopressivos (LPF) com Segurança",
+            descricao:"Use LPF estrategicamente para reduzir pressão e ganhar controle.",
+            capa:"https://i.imgur.com/cHRQ4jt.jpg",
+            aulas:[
+              {titulo:"LPF: princípios e respiração", descricao:"Base do método e apneia expiratória com qualidade.", videoUrl:"https://www.youtube.com/watch?v=VKAFhOxtvUg"},
+              {titulo:"LPF de 7 minutos (iniciante)", descricao:"Sequência curta para consistência diária.", videoUrl:"https://www.youtube.com/watch?v=xmqqVKwNb0c"},
+              {titulo:"LPF prático em casa", descricao:"Integre consciência postural e respiração.", videoUrl:"https://www.youtube.com/watch?v=pTP8SG4Oqf4"}
+            ]
+          },
+          {
+            id:4, titulo:"Assoalho Pélvico, Core Básico & Ponte",
+            descricao:"Coordene AP + TVA; estabilize sem ‘abrir’ a linha média.",
+            capa:"https://i.imgur.com/9k7fzOy.jpg",
+            aulas:[
+              {titulo:"4 exercícios para o Assoalho Pélvico", descricao:"Consciência, contração e relaxamento com segurança.", videoUrl:"https://www.youtube.com/watch?v=JMVIKK7r2fs"},
+              {titulo:"Dead Bug (versão segura)", descricao:"Controle de tronco e respiração longa.", videoUrl:"https://www.youtube.com/watch?v=_3qODK2t1ag"},
+              {titulo:"Ponte de glúteos + TVA", descricao:"Glúteo forte e pelve estável para firmeza visível.", videoUrl:"https://www.youtube.com/watch?v=Ygxa6cHD0J4"}
+            ]
+          },
+          {
+            id:5, titulo:"Anti-Rotação & Bracing Consciente",
+            descricao:"Prepare o core para a vida real — sem ‘doming’.",
+            capa:"https://i.imgur.com/l5Q44OO.jpg",
+            aulas:[
+              {titulo:"Pallof Press — seu escudo anti-rotação", descricao:"Resista à torção e proteja a linha alba.", videoUrl:"https://www.youtube.com/watch?v=X3K9kMHUCNU"},
+              {titulo:"Pallof com elástico (em casa)", descricao:"Execução com faixa: estável e efetiva.", videoUrl:"https://www.youtube.com/watch?v=GC0NIcCGRvw"},
+              {titulo:"Bracing simples (só o essencial)", descricao:"Aumente a pressão interna na medida certa.", videoUrl:"https://www.youtube.com/watch?v=IRPZVcHhEFg"}
+            ]
+          },
+          {
+            id:6, titulo:"Progressões Funcionais (seguras para diástase)",
+            descricao:"Quando subir nível sem perder técnica.",
+            capa:"https://i.imgur.com/bO5PXNs.jpg",
+            aulas:[
+              {titulo:"Bird-Dog/Perdigueiro controlado", descricao:"Assimetria, equilíbrio e estabilidade central.", videoUrl:"https://www.youtube.com/watch?v=Sde9Gd-4i9c"},
+              {titulo:"Prancha adaptada para diástase", descricao:"Alternativas sem sobrecarregar a linha alba.", videoUrl:"https://www.youtube.com/watch?v=9ziXx5sQa-s"},
+              {titulo:"Core com Mini Band (5 variações)", descricao:"Estabilidade em pé com anti-rotação dinâmica.", videoUrl:"https://www.youtube.com/watch?v=J6MKUhc09U4"}
+            ]
+          },
+          {
+            id:7, titulo:"Rotina 20 Dias, Cardio Sem Impacto & Manutenção",
+            descricao:"Consolide resultado e planeje o próximo ciclo.",
+            capa:"https://i.imgur.com/NME7r4T.jpg",
+            aulas:[
+              {titulo:"Caminhada intervalada (queima consciente)", descricao:"Protocolo simples e seguro para acelerar o gasto.", videoUrl:"https://www.youtube.com/watch?v=gco6iNqyAw4"},
+              {titulo:"HIIT sem saltos (13 min) — iniciantes", descricao:"Eleve a intensidade sem impacto.", videoUrl:"https://www.youtube.com/watch?v=DI6BZS78u7A"},
+              {titulo:"HIIT sem impacto (20 min) — progressão", descricao:"Sequência completa sem equipamentos.", videoUrl:"https://www.youtube.com/watch?v=Ga6z8DpoRy4"}
+            ]
+          }
+        ]
+      }
+    };
+
+    const STORAGE_KEY = "diastase20d_progress_v1";
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+    const $grid = qs('#grid');
+    const $overlay = qs('#overlay');
+    const $sheetCover = qs('#sheetCover');
+    const $sheetTitle = qs('#sheetTitle');
+    const $sheetDesc = qs('#sheetDesc');
+    const $sheetBody = qs('#sheetBody');
+    const $closeSheet = qs('#closeSheet');
+    const $whatsappBtn = qs('#whatsappBtn');
+    const $progressTotal = qs('#progressTotal');
+    const $progressTotalLabel = qs('#progressTotalLabel');
+
+    let progress = loadProgress();
+
+    function loadProgress(){
+      try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {} }catch(e){ return {} }
+    }
+    function saveProgress(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
+    function lessonKey(mid, idx){ return `l_${mid}_${idx}`; }
+    function moduleProgress(mod){
+      const total = mod.aulas.length;
+      let done = 0;
+      for(let i=0;i<total;i++){ if(progress[lessonKey(mod.id,i)]) done++; }
+      const pct = total? Math.round((done/total)*100):0;
+      return {done,total,pct};
+    }
+    function totalProgress(){
+      let done=0,total=0;
+      for(const m of DATA.curso.modulos){
+        const mp = moduleProgress(m); done+=mp.done; total+=mp.total;
+      }
+      const pct = total? Math.round((done/total)*100):0;
+      return {done,total,pct};
+    }
+
+    function renderGrid(){
+      $grid.innerHTML = "";
+      DATA.curso.modulos.forEach(mod=>{
+        const mp = moduleProgress(mod);
+        const card = document.createElement('article');
+        card.className = "card";
+        card.innerHTML = `
+          <div class="cover">
+            <img src="${mod.capa}" alt="Capa do ${mod.titulo}"/>
+            <span class="badge">Módulo ${mod.id}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${mod.titulo}</h3>
+            <div class="progress" aria-label="Progresso do módulo ${mod.id}"><span style="width:${mp.pct}%"></span></div>
+            <div class="progress-label">${mp.pct}% concluído (${mp.done}/${mp.total})</div>
+          </div>
+        `;
+        card.addEventListener('click', ()=>openModule(mod));
+        $grid.appendChild(card);
+      });
+      updateTotalProgress();
+    }
+
+    function updateTotalProgress(){
+      const tp = totalProgress();
+      $progressTotal.style.width = tp.pct + "%";
+      $progressTotalLabel.textContent = `${tp.pct}% concluído (${tp.done}/${tp.total})`;
+    }
+
+    function openModule(mod){
+      $sheetCover.src = mod.capa;
+      $sheetCover.alt = "Capa do " + mod.titulo;
+      $sheetTitle.textContent = mod.titulo;
+      $sheetDesc.textContent = mod.descricao;
+      $sheetBody.innerHTML = "";
+
+      mod.aulas.forEach((aula, idx)=>{
+        const lk = lessonKey(mod.id, idx);
+        const isDone = !!progress[lk];
+        const lesson = document.createElement('div');
+        lesson.className = "lesson";
+
+        const head = document.createElement('div');
+        head.className = "lesson-head";
+        const titleBox = document.createElement('div');
+        titleBox.innerHTML = `<div class="lesson-title">${aula.titulo}</div><div class="lesson-desc">${aula.descricao}</div>`;
+        const chevron = document.createElement('div');
+        chevron.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>';
+        head.appendChild(titleBox); head.appendChild(chevron);
+
+        const body = document.createElement('div');
+        body.className = "lesson-body";
+        body.innerHTML = `
+          <div class="player">
+            <div class="poster" role="button" aria-label="Assistir vídeo">
+              <img src="${mod.capa}" alt="Poster do vídeo">
+              <button class="play-btn" aria-label="Reproduzir"></button>
+            </div>
+            <div class="controls" style="display:none;">
+              <button class="tab-btn" data-action="toggle">Pausar</button>
+            </div>
+          </div>
+        `;
+
+        const finish = document.createElement('div');
+        finish.className = "finish-row";
+        const cb = document.createElement('div');
+        cb.className = "checkbox" + (isDone? " checked": "");
+        const label = document.createElement('div');
+        label.textContent = "Concluir aula";
+        finish.appendChild(cb); finish.appendChild(label);
+
+        lesson.appendChild(head);
+        lesson.appendChild(body);
+        lesson.appendChild(finish);
+        $sheetBody.appendChild(lesson);
+
+        head.addEventListener('click', ()=>{
+          body.classList.toggle('open');
+        });
+
+        cb.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const now = !(progress[lk]);
+          progress[lk] = now;
+          if(!now) delete progress[lk];
+          cb.classList.toggle('checked', now);
+          saveProgress();
+          renderGrid();
+        });
+
+        const poster = body.querySelector('.poster');
+        const controls = body.querySelector('.controls');
+        let player = null;
+        let playing = false;
+
+        function destroyPlayer(){
+          if(player && player.destroy){ player.destroy(); }
+          player = null;
+          controls.style.display = "none";
+          poster.style.display = "block";
+        }
+
+        function createPlayer(){
+          const container = document.createElement('div');
+          container.id = "yt_"+Math.random().toString(36).slice(2);
+          container.style.width = "100%";
+          container.style.height = "100%";
+          body.querySelector('.player').appendChild(container);
+
+          player = new YT.Player(container.id, {
+            videoId: parseYouTubeId(aula.videoUrl),
+            width: "100%",
+            height: "100%",
+            playerVars: {
+              autoplay:1, controls:0, rel:0, modestbranding:1, iv_load_policy:3, fs:0, playsinline:1, disablekb:1
+            },
+            events:{
+              'onReady': (e)=>{
+                playing = true;
+                e.target.playVideo();
+                controls.style.display = "block";
+                poster.style.display = "none";
+                const btn = controls.querySelector('[data-action="toggle"]');
+                btn.textContent = "Pausar";
+                btn.onclick = ()=>{
+                  if(!player) return;
+                  if(playing){ player.pauseVideo(); playing=false; btn.textContent="Reproduzir"; }
+                  else { player.playVideo(); playing=true; btn.textContent="Pausar"; }
+                };
+              },
+              'onStateChange': (e)=>{
+                if(e.data === 0){
+                  destroyPlayer();
+                } else if(e.data === 1){ playing = true; controls.querySelector('[data-action="toggle"]').textContent="Pausar"; }
+                else if(e.data === 2){ playing = false; controls.querySelector('[data-action="toggle"]').textContent="Reproduzir"; }
+              }
+            }
+          });
+        }
+
+        poster.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          if(!window.YT || typeof YT.Player !== "function"){
+            loadYouTubeAPI().then(createPlayer);
+          } else {
+            createPlayer();
+          }
+        });
+      });
+
+      $overlay.classList.add('open');
+      $overlay.setAttribute('aria-hidden','false');
+    }
+
+    $closeSheet.addEventListener('click', closeSheet);
+    $overlay.addEventListener('click', (e)=>{
+      if(e.target === $overlay) closeSheet();
+    });
+
+    function closeSheet(){
+      qsa('.lesson-body .player iframe').forEach(ifr=>{
+        const p = ifr.parentElement;
+        if(p && p.parentElement){
+          const poster = p.parentElement.querySelector('.poster');
+          if(poster) poster.style.display="block";
+          p.remove();
+        }
+      });
+      $overlay.classList.remove('open');
+      $overlay.setAttribute('aria-hidden','true');
+    }
+
+    let ytPromise = null;
+    function loadYouTubeAPI(){
+      if(ytPromise) return ytPromise;
+      ytPromise = new Promise(res=>{
+        const s = document.createElement('script');
+        s.src = "https://www.youtube.com/iframe_api";
+        window.onYouTubeIframeAPIReady = ()=>res();
+        document.head.appendChild(s);
+      });
+      return ytPromise;
+    }
+    function parseYouTubeId(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes("youtu.be")) return u.pathname.slice(1);
+        const id = u.searchParams.get("v");
+        if(id) return id;
+        const parts = u.pathname.split("/");
+        return parts[parts.length-1];
+      }catch(e){ return url; }
+    }
+
+    qsa('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const target = btn.dataset.tab;
+        qsa('.tab-btn').forEach(b=>b.setAttribute('aria-selected', String(b===btn)));
+        qsa('.tab').forEach(el=>el.classList.remove('active'));
+        qs(`#tab-${target}`).classList.add('active');
+      });
+    });
+
+    function renderFAQ(){
+      const $faq = qs('#faqList');
+      $faq.innerHTML = "";
+      DATA.curso.faq.forEach(item=>{
+        const block = document.createElement('div');
+        block.className = "accordion-item";
+        const head = document.createElement('div');
+        head.className = "accordion-head";
+        head.textContent = item.q;
+        const body = document.createElement('div');
+        body.className = "accordion-body";
+        body.textContent = item.a;
+        head.addEventListener('click', ()=>body.classList.toggle('open'));
+        block.appendChild(head); block.appendChild(body);
+        $faq.appendChild(block);
+      });
+    }
+
+    function init(){
+      $whatsappBtn.href = DATA.suporte_whatsapp;
+      renderGrid();
+      renderFAQ();
+    }
+    init();
+
+    qs('#resetBtn').addEventListener('click', ()=>{
+      if(confirm("Tem certeza que deseja redefinir seu progresso?")){
+        progress = {}; saveProgress(); renderGrid();
+      }
+    });
+  </script>
+</body>
+</html>
