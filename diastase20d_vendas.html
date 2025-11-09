@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diástase 2.0 - Recupere Seu Corpo Pós-Parto Sem Cirurgia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; color: #4CAF50; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: #333; }
+        .cta-fixed { position: fixed; bottom: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .hero { background: linear-gradient(to right, #4CAF50, #45a049); color: white; text-align: center; padding: 100px 20px 50px; margin-top: 70px; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 48px; margin: 0 0 20px; }
+        .hero p { font-size: 24px; margin: 0 0 30px; }
+        .btn { background: #FF9800; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 20px; cursor: pointer; text-decoration: none; display: inline-block; margin: 10px; }
+        .section { padding: 60px 20px; background: #fff; }
+        .section h2 { font-family: 'Montserrat', sans-serif; text-align: center; font-size: 36px; margin-bottom: 40px; color: #333; }
+        .depoimentos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .depo-card { background: #f9f9f9; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; }
+        .depo-card img { width: 100%; max-width: 600px; border-radius: 10px; margin-bottom: 20px; } /* Before/after split */
+        .depo-card blockquote { font-style: italic; margin-bottom: 20px; }
+        .beneficios { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .beneficio { text-align: center; }
+        .beneficio img { width: 60px; height: 60px; margin-bottom: 10px; } /* Ícones placeholders */
+        .expert { text-align: center; }
+        .expert img { width: 300px; border-radius: 50%; margin-bottom: 20px; }
+        .bonus { background: #e8f5e8; padding: 40px; border-radius: 10px; margin: 20px 0; }
+        .bonus ul { list-style: none; padding: 0; }
+        .bonus li { padding: 10px 0; font-size: 18px; }
+        .garantia { background: #fff3cd; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
+        .timer { text-align: center; font-size: 24px; color: #FF5722; margin: 20px 0; }
+        footer { background: #333; color: white; text-align: center; padding: 20px; }
+        .progress-bar { position: fixed; top: 70px; width: 100%; height: 4px; background: #4CAF50; transform: scaleX(0); transform-origin: left; z-index: 999; }
+        @media (max-width: 768px) { .hero h1 { font-size: 32px; } .depoimentos { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">Diástase 2.0</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#programa">Programa</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Diástase 2.0: Feche Sua Diástase em Até 90 Dias e Recupere Seu Corpo Pós-Parto Sem Cirurgia!</h1>
+            <p>Milhares de mães já transformaram suas vidas com o <strong>Diástase 2.0</strong>. Acesse a área de membros exclusiva e veja resultados reais!</p>
+            <img src="[URL_IMAGEM_HERO: Mulher before/after em praia]" alt="Transformação pós-parto" style="width: 100%; max-width: 800px; border-radius: 10px;">
+            <a href="https://pay.kiwify.com.br/lSvgU7C" class="btn">Acessar Diástase 2.0 Agora - Apenas R$ 47</a>
+            <p style="font-size: 14px; margin-top: 20px;">Parcele em 3x sem juros - Sai por apenas R$ 15/mês! Oferta limitada: Encerra em breve! Após compra, acesse sua área de membros em: https://alebz877.github.io/vigilant-octo-adventure/diastase20d_area_membros.html</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Depoimentos Reais de Nossas Alunas do Diástase 2.0</h2>
+            <div class="depoimentos">
+                <!-- Depoimento 1 -->
+                <div class="depo-card">
+                    <img src="https://i.imgur.com/poFEKh9.png" alt="Antes e Depois - Aluna 1 (Cabelo escuro ondulado)">
+                    <blockquote>“Eu me escondia. Camisetas largas, luz apagada, zero fotos. A diástase de 5 dedos me fazia parecer grávida de 6 meses, mesmo um ano após o parto. Em janeiro de 2025 entrei no <strong>Diástase 2.0</strong>. Exercícios respiratórios + ativação profunda do transverso + alimentação anti-inflamatória. Em 8 semanas a separação caiu para 2 dedos. Em 9 meses: 46 kg a menos, abdômen plano, cintura de volta. Hoje uso crop top sem medo, me olho no espelho e sorrio. Minha autoestima renasceu. O programa me devolveu a mulher que eu havia esquecido que existia.” – Maria Silva</blockquote>
+                </div>
+                
+                <!-- Depoimento 2 -->
+                <div class="depo-card">
+                    <img src="https://i.imgur.com/cLs6Fi1.png" alt="Antes e Depois - Aluna 2 (Cabelo castanho claro ondulado)">
+                    <blockquote>“105 kg, dor lombar, roupa GG que não fechava. Eu chorava no provador. Em março de 2025 comecei o <strong>Diástase 2.0</strong>. Nada de prancha, nada de crunch. Só respiração diafragmática, hipopressivos e treino funcional em 20 min/dia. Em 4 meses a diástase fechou 100%. Em 10 meses: 51 kg a menos, pele firme, energia o dia todo. Voltei a correr atrás do meu filho sem dor, a usar jeans 36, a me sentir sexy de novo. O programa não mudou meu corpo – mudou minha história.” – Ana Oliveira</blockquote>
+                </div>
+                
+                <!-- Depoimento 3 -->
+                <div class="depo-card">
+                    <img src="https://i.imgur.com/276EkNK.png" alt="Antes e Depois - Aluna 3 (Cabelo loiro liso)">
+                    <blockquote>“Eu era a ‘mãe gorda’ das fotos de família. Sempre de preto, sempre atrás de alguém. A diástase me impedia até de carregar a bebê por muito tempo. Em fevereiro de 2025 iniciei o <strong>Diástase 2.0</strong>. 3 fases: reconexão pélvica, fortalecimento inteligente, definição natural. Em 12 semanas a separação sumiu. Em 11 meses: 49 kg eliminados, abdômen trincado sem cirurgia, confiança para tirar selfie de biquíni. Hoje me sinto poderosa. O programa me ensinou que força vem de dentro – literalmente.” – Julia Santos</blockquote>
+                </div>
+                
+                <!-- Depoimento 4 -->
+                <div class="depo-card">
+                    <img src="https://i.imgur.com/5TlUsS5.png" alt="Antes e Depois - Aluna 4 (Cabelo preto liso)">
+                    <blockquote>“Roupas guardadas no fundo do armário, espelho coberto com toalha. A diástase de 4,5 dedos me fazia parecer grávida de novo. Em abril de 2025 entrei no <strong>Diástase 2.0</strong>. Alimentação cíclica + treinos de 15 min + hipopressivos noturnos. Em 60 dias a lacuna fechou. Em 8 meses: 47 kg a menos, pele esticada, cintura fina. Voltei a usar vestido justo, a dançar na sala, a me amar pelada. O programa não é dieta – é cura.” – Carla Lima</blockquote>
+                </div>
+                
+                <!-- Depoimento 5 -->
+                <div class="depo-card">
+                    <img src="https://i.imgur.com/ZAUz0XO.png" alt="Antes e Depois - Aluna 5 (Cabelo ruivo cacheado)">
+                    <blockquote>“Eu evitava piscina, evitava abraços apertados, evitava viver. 108 kg e uma barriga que ‘caía’ por cima da calça. Em maio de 2025 comecei o <strong>Diástase 2.0</strong>. Fogo baixo: mobilidade + ativação do core profundo + jejum intermitente guiado. Em 90 dias a diástase zerou. Em 10 meses: 53 kg a menos, curvas definidas, energia de 20 anos. Hoje posto stories de shortinho, recebo elogios, me sinto desejada. O programa acendeu a mulher que estava apagada dentro de mim.” – Sofia Costa</blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="programa">
+        <div class="container">
+            <h2>Por Que o Diástase 2.0 Funciona?</h2>
+            <div class="beneficios">
+                <div class="beneficio">
+                    <img src="[URL_ICO1: Ícone de respiração]" alt="Respiração Diafragmática">
+                    <h3>Fechamento Rápido da Diástase</h3>
+                    <p>Exercícios específicos em até 90 dias, sem cirurgias.</p>
+                </div>
+                <div class="beneficio">
+                    <img src="[URL_ICO2: Ícone de treino]" alt="Treino Funcional">
+                    <h3>Perda de Até 50kg</h3>
+                    <p>Emagrecimento saudável com treinos de 20 min/dia.</p>
+                </div>
+                <div class="beneficio">
+                    <img src="[URL_ICO3: Ícone de coração]" alt="Autoestima">
+                    <h3>Autoestima Renovada</h3>
+                    <p>Volte a se sentir confiante e sexy.</p>
+                </div>
+                <div class="beneficio">
+                    <img src="[URL_ICO4: Ícone de casa]" alt="Em Casa">
+                    <h3>100% Online e em Casa</h3>
+                    <p>Acesso vitalício à área de membros: https://alebz877.github.io/vigilant-octo-adventure/diastase20d_area_membros.html</p>
+                </div>
+            </div>
+            <div class="expert">
+                <img src="https://i.imgur.com/01Lr2EB.png" alt="Seu Expert: PEDRO, Personal Trainer">
+                <h3>Guiado por PEDRO, Especialista em Pós-Parto, Vendedor e Dono do Curso</h3>
+                <p>Com 10+ anos ajudando mães a reconquistarem o corpo dos sonhos no Diástase 2.0.</p>
+                <iframe width="560" height="315" src="[URL_VIDEO_EXPERT: Embed YouTube depoimento]" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>O Que Você Recebe no Diástase 2.0?</h2>
+            <div class="bonus">
+                <ul>
+                    <li>✅ Acesso Imediato à Área de Membros Exclusiva (com Suporte via WhatsApp)</li>
+                    <li>✅ Módulos Completos: Respiração, Fortalecimento do Core e Nutrição</li>
+                    <li>✅ Vídeos de Treinos e Aulas Práticas (Acesso Vitalício)</li>
+                    <li>✅ Bônus: Grupo VIP para Dúvidas e Motivação</li>
+                    <li>✅ Materiais Extras: PDFs, Checklists e Progress Tracker</li>
+                    <li>✅ Atualizações Gratuitas do Curso</li>
+                </ul>
+                <p><strong>Total: Valor Inestimável por Apenas R$ 47!</strong></p>
+            </div>
+            <div class="garantia">
+                <h3>Garantia de 30 Dias: Satisfação ou Seu Dinheiro de Volta!</h3>
+                <p>Se não ver resultados, devolvemos 100% – sem perguntas.</p>
+            </div>
+            <div class="timer" id="timer">Oferta encerra em: <span id="countdown"></span></div>
+            <a href="https://pay.kiwify.com.br/lSvgU7C" class="btn" style="display: block; max-width: 300px; margin: 0 auto; text-align: center;">Garantir Minha Vaga no Diástase 2.0 Agora!</a>
+            <p style="text-align: center; font-size: 16px; margin-top: 10px;">Parcele em 3x sem juros - Sai por apenas R$ 15/mês!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Diástase 2.0. Todos os direitos reservados. | Política de Privacidade | Termos de Uso</p>
+            <div>Instagram: @diastase20 | WhatsApp: [SEU_NUMERO]</div>
+        </div>
+    </footer>
+
+    <a href="https://pay.kiwify.com.br/lSvgU7C" class="cta-fixed">Comprar Diástase 2.0 - R$ 47</a>
+
+    <script>
+        // Barra de Progresso
+        window.onscroll = function() {
+            var progress = document.getElementById('progress');
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            progress.style.transform = 'scaleX(' + scrolled / 100 + ')';
+        };
+
+        // Timer de Oferta (ex: 24h countdown)
+        function countdown() {
+            var now = new Date().getTime();
+            var deadline = now + (24 * 60 * 60 * 1000); // 24 horas
+            var x = setInterval(function() {
+                var distance = deadline - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+                if (distance < 0) { clearInterval(x); document.getElementById("countdown").innerHTML = "Oferta Encerrada!"; }
+                now += 1000;
+            }, 1000);
+        }
+        countdown();
+    </script>
+</body>
+                  </html>
